@@ -59,13 +59,35 @@
             font-size: 13px;
             margin-top: 10px;
         }
+        .hidden {
+            display: none;
+        }
+        .special-message {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: none;
+            color: #ff5e57;
+        }
+        .special-message p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .light-bold {
+            font-weight: 400;
+        }
+        .medium-bold {
+            font-weight: 600;
+        }
+        .full-bold {
+            font-weight: 700;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>
+    <div class="container" id="container">
+        <h1 id="heading">
             <span class="gradient-text">My Love FV-VF</span> <span>😍💞</span>
         </h1>
         <p>I love you Betu 😘</p>
@@ -78,8 +100,15 @@
         <div class="time" id="time"></div>
         <div class="heart">😘 😍 💙 🩷 💞 🫂 🌸 ✨</div>
     </div>
+    <div class="special-message" id="specialMessage">
+        <p class="light-bold">FALENDRA❤️VIDYA</p>
+        <p class="medium-bold">FALENDRA❤️VIDYA</p>
+        <p class="full-bold">FALENDRA❤️VIDYA</p>
+    </div>
     
     <script>
+        let clickCount = 0;
+
         function launchConfetti() {
             confetti({
                 particleCount: 100,
@@ -92,6 +121,14 @@
             launchConfetti();
             updateTime();
             setInterval(updateTime, 1000);
+
+            document.getElementById('heading').addEventListener('click', () => {
+                clickCount++;
+                if (clickCount === 3) {
+                    showSpecialMessage();
+                    clickCount = 0; // Reset the counter
+                }
+            });
         };
 
         function updateTime() {
@@ -166,6 +203,17 @@
             }
 
             return Math.ceil((targetDateThisYear - now) / (1000 * 60 * 60 * 24));
+        }
+
+        function showSpecialMessage() {
+            const container = document.getElementById('container');
+            const specialMessage = document.getElementById('specialMessage');
+            container.classList.add('hidden');
+            specialMessage.style.display = 'block';
+            setTimeout(() => {
+                specialMessage.style.display = 'none';
+                container.classList.remove('hidden');
+            }, 5000);
         }
     </script>
 </body>
