@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soulmates: A Journey of FV-VF 💙🩷</title>
+    <style>
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            max-width: 350px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #6a5acd, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 8px 0;
+        }
+        .time {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .heart {
+            font-size: 15px;
+            color: #ff5e57;
+            margin-top: 15px;
+        }
+        .countdown {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="gradient-text">My Love FV-VF</span> <span>😍💞</span>
+        </h1>
+        <p>I love you Betu 😘</p>
+        <p>My Soulmate, Mor Betu, Mor Bubu, Mor Laikka, Mor Bachcha, Mor Jaan, FV-VF Forever love.</p>
+        <p>Falendra-Vidya 💙</p>
+        <p>Vidya-Falendra 🩷</p>
+        <p>Made for each other 💞</p>
+        <div class="countdown" id="countdown"></div>
+        <p>From 17-11-2023 to infinity</p>
+        <div class="time" id="time"></div>
+        <div class="heart">😘 😍 💙 🩷 💞 🫂 🌸 ✨</div>
+    </div>
+    
+    <script>
+        function launchConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        window.onload = function() {
+            launchConfetti();
+            updateTime();
+            setInterval(updateTime, 1000);
+        };
+
+        function updateTime() {
+            const startDate = new Date("2023-11-17T00:00:00");
+            const now = new Date();
+            const diffInMilliseconds = now - startDate;
+            
+            const seconds = Math.floor(diffInMilliseconds / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const days = Math.floor(minutes / (60 * 24));
+            const months = (now.getFullYear() - startDate.getFullYear()) * 12 + now.getMonth() - startDate.getMonth();
+            const years = now.getFullYear() - startDate.getFullYear();
+
+            document.getElementById('time').innerHTML = `
+                <p>Total Seconds: ${seconds}</p>
+                <p>Total Minutes: ${minutes}</p>
+                <p>Total Days: ${days}</p>
+                <p>Total Months: ${months}</p>
+                <p>Total Years: ${years}</p>
+            `;
+
+            updateCountdown();
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const startDate = new Date("2023-11-17T00:00:00"); // Start date for 1st Time Conversation
+            const firstAnniversaryDate = new Date("2024-03-21T00:00:00"); // First Anniversary
+            const firstMeetupDate = new Date("2024-03-21T00:00:00"); // First Meetup
+
+            // Calculate the next anniversary date
+            let nextAnniversary = new Date(firstAnniversaryDate);
+            if (now > nextAnniversary) {
+                nextAnniversary.setFullYear(nextAnniversary.getFullYear() + 1);
+            }
+
+            // Determine the anniversary label
+            const anniversaryNumber = nextAnniversary.getFullYear() - firstAnniversaryDate.getFullYear();
+            const anniversaryLabel = anniversaryNumber > 1 ? `${anniversaryNumber}nd Anniversary` : `1st Anniversary`;
+
+            // Set other special dates
+            const falendraBirthday = new Date("2024-12-16T00:00:00"); // Falendra's Birthday: December 16
+            const vidyaBirthday = new Date("2025-06-24T00:00:00"); // Vidya's Birthday: June 24
+
+            // Update dates for the current year if they have passed
+            if (now > falendraBirthday) falendraBirthday.setFullYear(now.getFullYear() + 1);
+            if (now > vidyaBirthday) vidyaBirthday.setFullYear(now.getFullYear() + 1);
+
+            // Calculate days remaining for special dates
+            const daysUntilFirstTimeConversation = Math.max(0, calculateDaysUntilDate(startDate));
+            const daysUntilAnniversary = Math.max(0, Math.ceil((nextAnniversary - now) / (1000 * 60 * 60 * 24)));
+            const daysUntilFirstMeetup = Math.max(0, calculateDaysUntilDate(firstMeetupDate));
+            const daysUntilFalendra = Math.max(0, Math.ceil((falendraBirthday - now) / (1000 * 60 * 60 * 24)));
+            const daysUntilVidya = Math.max(0, Math.ceil((vidyaBirthday - now) / (1000 * 60 * 60 * 24)));
+
+            document.getElementById('countdown').innerHTML = `
+                <p>Days until 1st Time Conversation: ${daysUntilFirstTimeConversation} (17 Nov)</p>
+                <p>Days until ${anniversaryLabel}: ${daysUntilAnniversary} (21 Mar)</p>
+                <p>Days until First Meetup: ${daysUntilFirstMeetup} (21 Mar)</p>
+                <p>Days until Falendra's Birthday: ${daysUntilFalendra} (16 Dec)</p>
+                <p>Days until Vidya's Birthday: ${daysUntilVidya} (24 Jun)</p>
+            `;
+        }
+
+        function calculateDaysUntilDate(targetDate) {
+            const now = new Date();
+            const targetDateThisYear = new Date(now.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+            
+            // If the target date has passed this year, calculate for next year
+            if (now > targetDateThisYear) {
+                targetDateThisYear.setFullYear(targetDateThisYear.getFullYear() + 1);
+            }
+
+            return Math.ceil((targetDateThisYear - now) / (1000 * 60 * 60 * 24));
+        }
+    </script>
+</body>
+</html>
